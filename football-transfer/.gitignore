@@ -1,3 +1,18 @@
 ./.idea
 ./build
 ./gradle
+
+bin/
+
+# ===== Gradle =====
+.gradle/
+
+# ===== Eclipse =====
+.project
+.classpath
+.settings/
+
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
