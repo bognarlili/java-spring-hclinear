@@ -1,11 +1,9 @@
-./.idea
-./build
-./gradle
+.idea/
+
+build/
+.gradle
 
 bin/
-
-# ===== Gradle =====
-.gradle/
 
 # ===== Eclipse =====
 .project
