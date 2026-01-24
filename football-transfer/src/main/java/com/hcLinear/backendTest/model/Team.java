@@ -1,6 +1,7 @@
 package com.hcLinear.backendTest.model;
 
 import java.math.BigDecimal;
+import java.time.Year;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -26,7 +27,7 @@ public class Team {
 	private String city;
 	
 	@Column(name = "founded_year", nullable= false)
-	private Integer foundedYear;
+	private Year foundedYear;
 	
 	@Column(nullable = false)
 	private BigDecimal budget;
@@ -53,14 +54,16 @@ public class Team {
 		this.city = city;
 	}
 
-	
-
-	public Integer getFoundedYear() {
+	public Year getFoundedYear() {
 		return foundedYear;
 	}
 
-	public void setFoundedYear(Integer foundedYear) {
+	public void setFoundedYear(Year foundedYear) {
 		this.foundedYear = foundedYear;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
