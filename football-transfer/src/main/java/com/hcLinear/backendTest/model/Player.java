@@ -104,7 +104,12 @@ public class Player {
 	public void setMarketValue(BigDecimal marketValue) {
 		this.marketValue = marketValue;
 	}
-	
-	
 
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 }
