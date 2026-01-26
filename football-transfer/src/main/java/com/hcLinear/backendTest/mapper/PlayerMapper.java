@@ -1,6 +1,7 @@
 package com.hcLinear.backendTest.mapper;
 
 import com.hcLinear.backendTest.dto.player.PlayerCreateRequest;
+import com.hcLinear.backendTest.dto.player.PlayerListResponse;
 import com.hcLinear.backendTest.dto.player.PlayerResponse;
 import com.hcLinear.backendTest.model.Player;
 import org.mapstruct.Mapper;
@@ -15,9 +16,13 @@ public interface PlayerMapper {
     @Mapping(target = "team", ignore = true)
     Player dtoToPlayer(PlayerCreateRequest req);
 
-    @Mapping(target = "fullName", expression = "java(player.getFirstName() + \" \" + player.getLastName())")
-    @Mapping(target = "teamName", expression = "java(player.getTeam() == null ? null : player.getTeam().getName())")
+    @Mapping(target = "teamId", expression = "java(player.getTeam() == null ? null : player.getTeam().getId())")
     PlayerResponse toResponse(Player player);
 
-    List<PlayerResponse> toResponses(List<Player> players);
+    @Mapping(target = "fullName", expression = "java(player.getFirstName() + \" \" + player.getLastName())")
+    @Mapping(target = "teamName", expression = "java(player.getTeam() == null ? null : player.getTeam().getName())")
+    PlayerListResponse toListResponse(Player player);
+
+    List<PlayerListResponse> toListResponses(List<Player> players);
+
 }
