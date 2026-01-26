@@ -2,7 +2,9 @@ package com.hcLinear.backendTest.controller;
 
 import java.util.List;
 
+import com.hcLinear.backendTest.dto.team.TeamCaptainRequest;
 import com.hcLinear.backendTest.dto.team.TeamCreateRequest;
+import com.hcLinear.backendTest.dto.team.TeamListResponse;
 import com.hcLinear.backendTest.mapper.TeamMapper;
 import com.hcLinear.backendTest.model.Team;
 import jakarta.validation.Valid;
@@ -26,7 +28,7 @@ public class TeamController {
 	}
 
 	@GetMapping
-	    public List<TeamResponse> findAll() {
+	    public List<TeamListResponse> findAll() {
 	        return teamService.findAll();
 	    }
 
@@ -52,6 +54,14 @@ public class TeamController {
 	public void delete(@PathVariable long id) {
 		teamService.delete(id);
 	}
+
+	@PatchMapping("/{id}/captain")
+	public TeamResponse setCaptain(@PathVariable Long id,
+								   @RequestBody TeamCaptainRequest request) {
+		Team updated = teamService.setCaptain(id, request.captainId());
+		return teamMapper.toResponse(updated);
+	}
+
 
 
 
