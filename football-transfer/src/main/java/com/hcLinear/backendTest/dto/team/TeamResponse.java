@@ -9,7 +9,6 @@ public record TeamResponse(
         String city,
         Year foundedYear,
         BigDecimal budget,
-        long playerCount,
-        String captainFullName) {
+        Long captainId) {
 
 }

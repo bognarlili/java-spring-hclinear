@@ -7,15 +7,13 @@ import com.hcLinear.backendTest.model.PlayerPosition;
 
 public record PlayerResponse(
         Long id,
-        String firstName,
-        String lastName,
-        String fullName,
+		String firstName,
+		String lastName,
         PlayerPosition playerPosition,
         Integer shirtNumber,
         LocalDate birthDate,
         BigDecimal marketValue,
-        Long teamId,
-        String teamName
+        Long teamId
 		
 		) {
 
