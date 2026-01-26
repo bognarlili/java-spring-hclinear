@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import com.hcLinear.backendTest.model.PlayerPosition;
 
+import com.hcLinear.backendTest.validation.MinAge;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -17,7 +18,7 @@ public record PlayerCreateRequest(
 	    @NotBlank String lastName,
 	    @NotNull PlayerPosition playerPosition,
 	    @NotNull @Min(1) @Max(99) Integer shirtNumber,
-	    @NotNull @Past LocalDate birthDate,
+	    @NotNull @Past @MinAge(15) LocalDate birthDate,
 	    @NotNull @DecimalMin("0.00") BigDecimal marketValue,
 	    Long teamId
 ) {
