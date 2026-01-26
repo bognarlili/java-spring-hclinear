@@ -1,6 +1,8 @@
 spring:
   application:
     name: backend_test
+  jpa:
+    open-in-view: false
 
 server:
   port: 8080
