@@ -1,6 +1,7 @@
 package com.hcLinear.backendTest.controller;
 
 import com.hcLinear.backendTest.dto.player.PlayerCreateRequest;
+import com.hcLinear.backendTest.dto.player.PlayerListResponse;
 import com.hcLinear.backendTest.dto.player.PlayerResponse;
 import com.hcLinear.backendTest.mapper.PlayerMapper;
 
@@ -25,7 +26,7 @@ public class PlayerController {
 
 
     @GetMapping
-    public List<PlayerResponse> findAll() {
+    public List<PlayerListResponse> findAll() {
         return playerService.findAll();
     }
 
@@ -35,7 +36,7 @@ public class PlayerController {
     public PlayerResponse create(@RequestBody @Valid PlayerCreateRequest playerCreateRequest) {
 
         Player player = playerMapper.dtoToPlayer(playerCreateRequest);
-        Player savedPlayer = playerService.create(player);
+        Player savedPlayer = playerService.create(player, playerCreateRequest.teamId() );
 
         return playerMapper.toResponse(savedPlayer);
     }
