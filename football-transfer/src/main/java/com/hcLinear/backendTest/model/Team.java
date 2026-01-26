@@ -4,13 +4,7 @@ import java.math.BigDecimal;
 import java.time.Year;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "teams")
@@ -34,6 +28,11 @@ public class Team {
 	
 	@OneToMany(mappedBy = "team")
 	private List<Player> player;
+
+	@OneToOne
+	@JoinColumn(name = "captain_id")
+	private Player captain;
+
 
 	public Team() {
 	}
@@ -85,7 +84,12 @@ public class Team {
 	public void setPlayer(List<Player> player) {
 		this.player = player;
 	}
-	
-	
 
+	public Player getCaptain() {
+		return captain;
+	}
+
+	public void setCaptain(Player captain) {
+		this.captain = captain;
+	}
 }
