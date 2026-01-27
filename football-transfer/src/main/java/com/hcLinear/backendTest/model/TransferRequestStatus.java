@@ -4,5 +4,5 @@ public enum TransferRequestStatus {
     PENDING,
     ACCEPTED,
     REJECTED,
-    CANCELED
+    CANCELLED
 }
