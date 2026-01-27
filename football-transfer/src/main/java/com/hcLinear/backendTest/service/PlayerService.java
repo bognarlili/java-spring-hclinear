@@ -3,6 +3,7 @@ package com.hcLinear.backendTest.service;
 import com.hcLinear.backendTest.dto.player.PlayerListResponse;
 import com.hcLinear.backendTest.dto.player.PlayerResponse;
 import com.hcLinear.backendTest.dto.team.TeamResponse;
+import com.hcLinear.backendTest.exception.NotFoundException;
 import com.hcLinear.backendTest.mapper.PlayerMapper;
 import com.hcLinear.backendTest.mapper.TeamMapper;
 import com.hcLinear.backendTest.model.Player;
@@ -10,6 +11,7 @@ import com.hcLinear.backendTest.model.Team;
 import com.hcLinear.backendTest.repository.PlayerRepository;
 import com.hcLinear.backendTest.repository.TeamRepository;
 import jakarta.transaction.Transactional;
+import lombok.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -33,17 +35,16 @@ public class PlayerService {
         return playerMapper.toListResponses(playerRepository.findAll());
     }
 
-
     @Transactional
-    public Player create(Player player, Long teamId) {
-
-        Team team = teamRepository.findById(teamId)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Team not found: " + teamId));
-
+    public Player create(Player player, long teamId) {
+        Team team = getTeamOrThrow(teamId);
         player.setTeam(team);
-
         return save(player);
+    }
+
+    private @NonNull Team getTeamOrThrow(long teamId) {
+        return teamRepository.findById(teamId)
+                .orElseThrow(() -> new NotFoundException("Team not found: " + teamId));
     }
 
     public Player save(Player player) {
@@ -51,13 +52,20 @@ public class PlayerService {
     }
 
     public Player findById(long id){
-        return playerRepository.findById(id).orElse(null);
+        return getPlayerOrThrow(id);
     }
 
 
     @Transactional
     public void delete(long id) {
+        Player player = getPlayerOrThrow(id);
         playerRepository.deleteById(id);
+    }
+
+
+    private Player getPlayerOrThrow(long id) {
+        return playerRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Player not found: " + id));
     }
 
 
