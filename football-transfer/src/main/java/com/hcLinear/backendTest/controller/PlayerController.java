@@ -37,12 +37,11 @@ public class PlayerController {
 
         Player player = playerMapper.dtoToPlayer(playerCreateRequest);
         Player savedPlayer = playerService.create(player, playerCreateRequest.teamId() );
-
         return playerMapper.toResponse(savedPlayer);
     }
 
     @GetMapping("/{id}")
-    public PlayerResponse findById(@PathVariable long id){
+    public PlayerResponse findById(@PathVariable Long id){
         Player player = playerService.findById(id);
 
         return playerMapper.toResponse(player);

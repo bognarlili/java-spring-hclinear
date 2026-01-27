@@ -32,26 +32,21 @@ public class TeamController {
 	        return teamService.findAll();
 	    }
 
-
-
 	@PostMapping
 	public TeamResponse create(@RequestBody @Valid TeamCreateRequest teamCreateRequest) {
-
 		Team team = teamMapper.dtoToTeam(teamCreateRequest);
 		Team savedTeam = teamService.create(team);
-
 		return teamMapper.toResponse(savedTeam);
 	}
 
 	@GetMapping("/{id}")
-	public TeamResponse findById(@PathVariable long id){
+	public TeamResponse findById(@PathVariable Long id){
 		Team team = teamService.findById(id);
-
 		return teamMapper.toResponse(team);
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
+	public void delete(@PathVariable Long id) {
 		teamService.delete(id);
 	}
 
@@ -61,8 +56,5 @@ public class TeamController {
 		Team updated = teamService.setCaptain(id, request.captainId());
 		return teamMapper.toResponse(updated);
 	}
-
-
-
 
 }
