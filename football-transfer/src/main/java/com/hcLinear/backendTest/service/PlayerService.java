@@ -36,9 +36,13 @@ public class PlayerService {
     }
 
     @Transactional
-    public Player create(Player player, long teamId) {
-        Team team = getTeamOrThrow(teamId);
-        player.setTeam(team);
+    public Player create(Player player, Long teamId) {
+        if(teamId != null){
+            Team team = getTeamOrThrow(teamId);
+            player.setTeam(team);
+        } else {
+            player.setTeam(null);
+        }
         return save(player);
     }
 
