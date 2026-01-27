@@ -11,22 +11,33 @@ public class TransferRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    @Column(nullable = false)
     private LocalDateTime expiresAt;
+
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TransferRequestStatus status;
+
     @ManyToOne
-    @JoinColumn(name="player_id")
+    @JoinColumn(name = "player_id", nullable = false)
     private Player player;
 
     @ManyToOne
-    @JoinColumn(name="from_team_id")
+    @JoinColumn(name = "from_team_id")
     private Team fromTeam;
+
     @ManyToOne
-    @JoinColumn(name="to_team_id")
+    @JoinColumn(name = "to_team_id", nullable = false)
     private Team toTeam;
 
+    @Column(nullable = false)
     private BigDecimal fee;
+
+    public TransferRequest() {
+    }
 
     public Long getId() {
         return id;
