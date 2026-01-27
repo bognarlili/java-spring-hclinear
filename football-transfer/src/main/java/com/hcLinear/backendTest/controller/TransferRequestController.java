@@ -25,5 +25,15 @@ public class TransferRequestController {
         return transferRequestMapper.toResponse(transferRequestService.create(transferCreateRequest));
     }
 
+    @PostMapping("/{id}/reject")
+    public void reject(@PathVariable long id) {
+        transferRequestService.reject(id);
+    }
+
+    @PostMapping("/{id}/accept")
+    public void accept(@PathVariable long id) {
+        transferRequestService.accept(id);
+    }
+
 
 }
