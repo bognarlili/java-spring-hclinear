@@ -1,9 +1,9 @@
 package com.hcLinear.backendTest.dto.player;
 
+import com.hcLinear.backendTest.model.PlayerPosition;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
-import com.hcLinear.backendTest.model.PlayerPosition;
 
 public record PlayerResponse(
         Long id,

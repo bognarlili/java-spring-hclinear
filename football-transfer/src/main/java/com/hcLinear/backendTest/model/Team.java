@@ -1,10 +1,10 @@
 package com.hcLinear.backendTest.model;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.Year;
 import java.util.List;
-
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "teams")
