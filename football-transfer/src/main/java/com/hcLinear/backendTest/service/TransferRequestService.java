@@ -3,12 +3,10 @@ package com.hcLinear.backendTest.service;
 import com.hcLinear.backendTest.dto.transfer.TransferRequestCreateRequest;
 import com.hcLinear.backendTest.exception.BusinessRuleViolationException;
 import com.hcLinear.backendTest.exception.NotFoundException;
-import com.hcLinear.backendTest.model.Player;
-import com.hcLinear.backendTest.model.Team;
-import com.hcLinear.backendTest.model.TransferRequest;
-import com.hcLinear.backendTest.model.TransferRequestStatus;
+import com.hcLinear.backendTest.model.*;
 import com.hcLinear.backendTest.repository.PlayerRepository;
 import com.hcLinear.backendTest.repository.TeamRepository;
+import com.hcLinear.backendTest.repository.TransferDocumentRepository;
 import com.hcLinear.backendTest.repository.TransferRequestRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -23,11 +21,16 @@ public class TransferRequestService {
     private final TransferRequestRepository transferRequestRepository;
     private final PlayerRepository playerRepository;
     private final TeamRepository teamRepository;
+    private final TransferDocumentRepository transferDocumentRepository;
+    private final TransferDocumentNumberGenerator documentNumberGenerator;
 
-    public TransferRequestService(TransferRequestRepository transferRequestRepository, PlayerRepository playerRepository, TeamRepository teamRepository) {
+
+    public TransferRequestService(TransferRequestRepository transferRequestRepository, PlayerRepository playerRepository, TeamRepository teamRepository, TransferDocumentRepository transferDocumentRepository, TransferDocumentNumberGenerator documentNumberGenerator) {
         this.transferRequestRepository = transferRequestRepository;
         this.playerRepository = playerRepository;
         this.teamRepository = teamRepository;
+        this.transferDocumentRepository = transferDocumentRepository;
+        this.documentNumberGenerator = documentNumberGenerator;
     }
 
     @Transactional
@@ -126,7 +129,25 @@ public class TransferRequestService {
                 other.setStatus(TransferRequestStatus.CANCELLED);
             }
         }
+
+        createTransferDocument(accepted);
     }
+
+    private void createTransferDocument(TransferRequest accepted) {
+
+        TransferDocument doc = new TransferDocument();
+        doc.setDocNumber(documentNumberGenerator.next());
+        doc.setTransferDate(LocalDateTime.now());
+        doc.setCreatedAt(LocalDateTime.now());
+        doc.setPlayer(accepted.getPlayer());
+        doc.setFromTeam(accepted.getFromTeam());
+        doc.setToTeam(accepted.getToTeam());
+        doc.setFee(accepted.getFee());
+        doc.setTransferRequest(accepted);
+
+        transferDocumentRepository.save(doc);
+    }
+
 
 
 
