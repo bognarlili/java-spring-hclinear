@@ -1,7 +1,7 @@
 plugins {
-	java
-	id("org.springframework.boot") version "3.2.0"
-	id("io.spring.dependency-management") version "1.1.7"
+    java
+    id("org.springframework.boot") version "3.2.0"
+    id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "com.hclinear"
@@ -9,39 +9,43 @@ version = "0.0.1-SNAPSHOT"
 description = "Spring Boot backend coding challenge for HC Linear onboarding."
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	val lombokVersion = "1.18.34"
-	val mapstructVersion = "1.5.5.Final"
-	val postgresqlVersion = "42.7.7"
-	val flywayCoreVersion = "9.16.3"
+    val lombokVersion = "1.18.34"
+    val mapstructVersion = "1.5.5.Final"
+    val postgresqlVersion = "42.7.7"
+    val flywayCoreVersion = "9.16.3"
 
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.mapstruct:mapstruct:${mapstructVersion}")
-	implementation("org.projectlombok:lombok:${lombokVersion}")
-	implementation("org.flywaydb:flyway-core:${flywayCoreVersion}")
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+    implementation("org.projectlombok:lombok:${lombokVersion}")
+    implementation("org.flywaydb:flyway-core:${flywayCoreVersion}")
+    implementation("com.github.librepdf:openpdf:1.3.30")
 
-	runtimeOnly("org.postgresql:postgresql:${postgresqlVersion}")
 
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    runtimeOnly("org.postgresql:postgresql:${postgresqlVersion}")
 
-	annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
-	annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    annotationProcessor("org.hibernate.orm:hibernate-jpamodelgen:6.4.4.Final")
 }
 
 tasks.withType<Test> {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
