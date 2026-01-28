@@ -9,11 +9,14 @@ import com.hcLinear.backendTest.repository.TeamRepository;
 import com.hcLinear.backendTest.repository.TransferDocumentRepository;
 import com.hcLinear.backendTest.repository.TransferRequestRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static com.hcLinear.backendTest.service.TransferRequestSpecification.*;
 
 @Service
 public class TransferRequestService {
@@ -132,6 +135,18 @@ public class TransferRequestService {
 
         createTransferDocument(accepted);
     }
+
+    @Transactional
+    public List<TransferRequest> list(Long playerId, Long fromTeamId, Long toTeamId, TransferRequestStatus status) {
+        Specification<TransferRequest> spec = Specification
+                .where(TransferRequestSpecification.hasPlayerId(playerId))
+                .and(TransferRequestSpecification.hasFromTeamId(fromTeamId))
+                .and(TransferRequestSpecification.hasToTeamId(toTeamId))
+                .and(TransferRequestSpecification.hasStatus(status));
+
+        return transferRequestRepository.findAll(spec);
+    }
+
 
     private void createTransferDocument(TransferRequest accepted) {
 
