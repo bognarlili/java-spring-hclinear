@@ -1,0 +1,431 @@
+{
+  "info": {
+    "_postman_id": "c96c41b0-9c47-4efe-84dd-6da7c9b61331",
+    "name": "HcLinear",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Team",
+      "item": [
+        {
+          "name": "Gel all teams",
+          "id": "11ac2150-2ec1-4a11-8c8b-504aa545a2b9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/teams",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "teams"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add captain",
+          "id": "6d54ac18-73d2-4f85-b079-24817830a032",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"captainId\": 10 }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/teams/12/captain",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "teams",
+                "12",
+                "captain"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Team",
+          "id": "5e7e3c08-7591-4eee-ac17-d522a4c4e196",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"FC Example\",\r\n  \"city\": \"Budapest\",\r\n  \"foundedYear\": 1901,\r\n  \"budget\": 25000000\r\n}\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/teams/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "teams",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Team",
+          "id": "0ebb985a-8759-447a-bccf-77346a04df71",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"FC Example\",\r\n  \"city\": \"Budapest\",\r\n  \"foundedYear\": 2020,\r\n  \"budget\": 8500\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/teams",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "teams"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Team by id",
+          "id": "3788ebc9-b268-4bfe-8058-ca9343b5091f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/teams/8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "teams",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "ef6d78c8-9d26-498c-a099-4e81e9ed4388"
+    },
+    {
+      "name": "Player",
+      "item": [
+        {
+          "name": "Create player",
+          "id": "31f4d081-c100-4181-b526-710beb6a3fd3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstName\": \"Patrik\",\r\n  \"lastName\": \"Kiss\",\r\n  \"playerPosition\": \"MF\",\r\n  \"shirtNumber\": 18,\r\n  \"birthDate\": \"2000-05-15\",\r\n  \"marketValue\": 2500,\r\n  \"teamId\":1\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/players",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "players"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all players",
+          "id": "72a9fe67-acea-41bf-b5d5-d26552d690f1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/players",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "players"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete player",
+          "id": "13697a3d-5527-4e06-8ebb-fa3a1c39e1c4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/players/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "players",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Find Player by id",
+          "id": "7561f315-742c-4e19-9be3-e409db2d5b04",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"FC Example\",\r\n  \"city\": \"Budapest\",\r\n  \"foundedYear\": 1901,\r\n  \"budget\": 25000000\r\n}\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/players/13",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "players",
+                "13"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5481f2ce-8344-498b-9d7a-0d51191debe1"
+    },
+    {
+      "name": "Transfer request",
+      "item": [
+        {
+          "name": "Reject request",
+          "id": "5538e992-dc2f-4e2b-9355-f8d133e99758",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/transfers/requests/4/reject",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "transfers",
+                "requests",
+                "4",
+                "reject"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List requests",
+          "id": "df62cb63-2709-48a6-9619-da7dbdfe40ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/transfers/requests",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "transfers",
+                "requests"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Nyomtatás",
+          "id": "de85b3a8-e32a-4154-b3bd-1478e7291340",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/transfer-documents/1/pdf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "transfer-documents",
+                "1",
+                "pdf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Accept Request",
+          "id": "e4c94a36-1895-4175-b02a-01c6bf0a97b3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"playerId\": 4,\r\n  \"fromTeamId\": null,\r\n  \"toTeamId\": 3,\r\n  \"expiresAt\": \"2026-02-10T12:00:00\",\r\n  \"fee\": 0\r\n}\r\n"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/transfers/requests/1/accept",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "transfers",
+                "requests",
+                "1",
+                "accept"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create request",
+          "id": "027afd32-406b-417d-8562-0d0e94ab331e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"playerId\": 4,\r\n  \"fromTeamId\": 5,\r\n  \"toTeamId\": 3,\r\n  \"expiresAt\": \"2026-02-10T12:00:00\",\r\n  \"fee\": 9088\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/transfers/requests",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "transfers",
+                "requests"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "1b8afb0b-37c9-49b1-9806-ba892f3c5b9d"
+    }
+  ]
+}
